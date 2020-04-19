@@ -8,5 +8,6 @@ import {Specialist} from '../../services/specialists.service';
 })
 export class SpecialistTabComponent {
   @Input() specialist: Specialist;
+  @Input() currentSpecialist: Specialist;
   constructor() { }
 }

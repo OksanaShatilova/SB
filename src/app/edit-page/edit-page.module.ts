@@ -5,6 +5,7 @@ import {EditPageComponent} from './edit-page.component';
 import {SpecialistsListModule} from './specialists-list/specialists-list.module';
 import {ShopsListModule} from './shops-list/shops-list.module';
 import {SpecialistsResolver} from './services/specialists.resolver';
+import {ShopsResolver} from './services/shops.resolver';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {SpecialistsResolver} from './services/specialists.resolver';
         path: '',
         component: EditPageComponent,
         resolve: {
-          specialists: SpecialistsResolver
+          specialists: SpecialistsResolver,
+          shops: ShopsResolver
         }
       }
     ])

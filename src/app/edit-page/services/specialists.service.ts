@@ -5,6 +5,7 @@ export interface Specialist {
   id: number;
   fullName: string;
   photo: string;
+  shops?: [];
 }
 
 @Injectable({providedIn: 'root'})

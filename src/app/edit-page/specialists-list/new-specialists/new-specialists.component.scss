@@ -9,13 +9,14 @@
   background-color: white;
   border: 1px solid lightgray;
   box-sizing: border-box;
+  border-radius: 4px;
 }
 
 .specialist {
   padding: 5px;
   margin-bottom: 10px;
   &:hover {
-    background-color: lightgray;
+    background-color: ghostwhite;
   }
 }
 

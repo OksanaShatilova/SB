@@ -54,6 +54,12 @@
   }
 }
 
+.btn__add:hover {
+  &:before {
+    background-color: lightblue;
+  }
+}
+
 .action-panel {
   display: flex;
   position: absolute;

@@ -1,0 +1,40 @@
+.shops-list {
+  width: 480px;
+  min-height: 440px;
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 22px 25px;
+}
+
+.shops-counter {
+  display: flex;
+}
+
+.shops-counter__number {
+  font-weight: 400;
+  margin-left: 8px;
+}
+
+.icon--warning {
+  margin-left: 12px;
+  margin-top: -5px;
+}
+
+.shops-container {
+  padding-left: 60px;
+}
+
+app-shop-item {
+  position: relative;
+  &:after{
+    content: '';
+    background-image: url("../../../assets/img/arrow.svg");
+    width: 14px;
+    height: 7px;
+    position: absolute;
+    top: 40px;
+    left: -40px;
+    background-repeat: no-repeat;
+  }
+}

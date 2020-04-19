@@ -1,0 +1,116 @@
+.specialist-list {
+  position: relative;
+}
+
+.specialists-card {
+  background-color: white;
+  width: 500px;
+  min-height: 440px;
+  margin-right: 40px;
+  border-radius: 0px 6px 6px 6px;
+}
+
+.specialists-card--filled {
+  box-shadow: 0 0 30px rgba(0,0,0,0.1);
+}
+
+.specialists-card--empty {
+  background: #F2F2F2;
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border-radius: 4px;
+  stroke-dasharray: 6, 4;
+}
+
+.btn__add {
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: transparent;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.72);
+  display: block;
+  height: 40px;
+  position: relative;
+  padding-left: 56px;
+  &:before {
+    content: '';
+    width: 40px;
+    height: 40px;
+    background: #F2F2F2;
+    border-radius: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  &:after{
+    content: '';
+    background-image: url("../../../assets/img/plus.svg");
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background-repeat: no-repeat;
+  }
+}
+
+.action-panel {
+  display: flex;
+  position: absolute;
+  top: -60px;
+}
+
+.no-specialists-message {
+  margin: 0 auto;
+  max-width: 350px;
+  margin-top: 155px;
+  text-align: center;
+}
+
+.title {
+  letter-spacing: 2px;
+  font-weight: bold;
+  line-height: 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.text {
+  font-weight: 300;
+  line-height: 22px;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.44);
+  margin-bottom: 35px;
+}
+
+.specialists-card__content {
+  padding: 0 24px;
+}
+
+.specialists-card__specialist-info {
+  padding-top: 25px;
+}
+
+.specialists-card__shops {
+  margin-top: 30px;
+}
+
+.no-shops-message {
+  position: relative;
+  font-weight: 300;
+  &:after{
+    content: '';
+    background-image: url("../../../assets/img/warning.svg");
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 100px;
+    background-repeat: no-repeat;
+  }
+}
+
+.title__shops {
+  margin-bottom: 15px;
+}

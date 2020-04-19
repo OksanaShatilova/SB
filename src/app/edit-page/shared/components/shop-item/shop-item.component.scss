@@ -1,0 +1,33 @@
+.shop-item {
+  display: flex;
+  padding-top: 25px;
+}
+
+.shop-item__name {
+  line-height: 16px;
+  margin-bottom: 5px;
+}
+
+.shop-item__address {
+  color: rgba(0, 0, 0, 0.32);
+  font-size: 11px;
+  line-height: 12px;
+}
+
+.shop-item__logo {
+  margin-right: 16px;
+  text-align: center;
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.72);
+  border-radius: 50%;
+}
+
+.shop-item__logo-text {
+  padding-top: 7px;
+}
+
+.shop-item__info {
+  padding: 5px 0;
+}

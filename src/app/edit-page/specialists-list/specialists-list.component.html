@@ -1,0 +1,26 @@
+<div class="specialist-list">
+  <div class="action-panel">
+    <app-specialist-tab *ngFor="let specialist of addedSpecialists" [specialist]="specialist"></app-specialist-tab>
+    <button class="btn btn__add" (click)="openNewSpecialistsList()">Добавить специалиста</button>
+  </div>
+  <div class="specialists-card specialists-card--filled">
+    <div class="specialists-card__content">
+      <div class="specialists-card__specialist-info">
+        <p class="title--small">Специалист</p>
+        <app-specialist-info></app-specialist-info>
+      </div>
+      <div class="specialists-card__shops">
+        <p class="title__shops title--small">Магазины</p>
+        <p class="no-shops-message" style="display: none">Не назначены</p>
+        <app-shop-item></app-shop-item>
+      </div>
+    </div>
+    <div class="no-specialists-message" style="display: none">
+      <h2 class="title">Специалист не назначен</h2>
+      <p class="text">Чтобы начать работу с нераспределенными магазинами,
+        вам необходимо добавить хотя бы одного специалиста</p>
+      <img src="../../../assets/img/user.svg">
+    </div>
+  </div>
+  <app-new-specialists *ngIf="!hiddenList" [specialists]="allSpecialists" (onClose)="closePopup()" (onSelect)="addSpecialist($event)"></app-new-specialists>
+</div>

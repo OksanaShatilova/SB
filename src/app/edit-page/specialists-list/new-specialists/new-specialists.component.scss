@@ -1,0 +1,29 @@
+.new-specialists-list {
+  padding: 50px 20px;
+  min-width: 510px;
+  height: 440px;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
+  border: 1px solid lightgray;
+  box-sizing: border-box;
+}
+
+.specialist {
+  padding: 5px;
+  margin-bottom: 10px;
+  &:hover {
+    background-color: lightgray;
+  }
+}
+
+.icon--close {
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  &:hover {
+    color: cornflowerblue;
+  }
+}

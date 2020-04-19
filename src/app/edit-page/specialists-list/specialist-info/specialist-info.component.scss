@@ -1,0 +1,23 @@
+.specialist {
+  position: relative;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.specialist__photo {
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+}
+
+.specialist__shops-counter {
+  margin-left: 16px;
+  color: #007AFF
+}
+
+.icon--delete {
+  position: absolute;
+  right: 0;
+  top: 12px;
+}

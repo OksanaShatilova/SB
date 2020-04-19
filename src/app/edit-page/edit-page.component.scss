@@ -1,0 +1,35 @@
+.edit-page {
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 1020px;
+}
+
+.edit-page__container {
+  display: flex;
+}
+
+.btn__save {
+  font-weight: 300;
+  display: flex;
+  margin-left: auto;
+  margin-bottom: 16px;
+  padding: 12px 50px 12px 24px;
+  position: relative;
+  font-size: 14px;
+  color: #828282;
+  min-width: 220px;
+  height: 48px;
+  border: 1px solid rgba(71, 71, 71, 0.16);
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  &:before {
+    content: '';
+    width: 13px;
+    height: 13px;
+    background-image: url("../../assets/img/check.svg");
+    position: absolute;
+    top: 17px;
+    right: 16px;
+  }
+}

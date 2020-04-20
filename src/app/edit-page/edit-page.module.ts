@@ -17,7 +17,7 @@ export interface Result {
 
 export interface WorkerShopRequestItem {
   specialistId: number;
-  shopsId: number[];
+  shopId: number;
 }
 
 @NgModule({

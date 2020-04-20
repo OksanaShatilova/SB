@@ -4,13 +4,17 @@
   </button>
   <div class="edit-page__container">
     <app-specialists-list
+      [allShops]="allShops"
       (onHide)="disableShopsList($event)"
       (onCurrentSpecialistChanged)="updateCurrentSpecialist($event)"
       (onCurrentSpecialistShopDelete)="removeCurrentSpecialistShop($event)"
       (onCurrentSpecialistDelete)="updateShopsList($event)"
       (onAllSpecialistListUpdate)="updateResult($event)"
+      (onShopsReset)="resetShopListToDefault()"
     ></app-specialists-list>
     <app-shops-list
+      [currentSpecialist]="currentSpecialist"
+      [availableShops]="availableShops"
       [disabledList]="disabledList"
       (onShopAdd)="addCurrentSpecialistShop($event)"
       (onAvailableShopsChanged)="updateAvailableShopsList($event)"

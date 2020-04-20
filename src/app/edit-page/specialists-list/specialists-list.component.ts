@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Specialist} from '../services/specialists.service';
 import {Shop} from '../services/shops.service';
@@ -17,12 +17,13 @@ export class SpecialistsListComponent implements OnInit, OnDestroy {
   currentSpecialist: Specialist;
   hiddenList = true;
   routeSubscription: Subscription
-
+  @Input() allShops: Shop[];
   @Output() onHide: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onCurrentSpecialistChanged: EventEmitter<Specialist> = new EventEmitter<Specialist>();
   @Output() onCurrentSpecialistShopDelete: EventEmitter<Shop> = new EventEmitter<Shop>();
   @Output() onCurrentSpecialistDelete: EventEmitter<Specialist> = new EventEmitter<Specialist>();
   @Output() onAllSpecialistListUpdate: EventEmitter<Result> = new EventEmitter<Result>()
+  @Output() onShopsReset: EventEmitter<void> = new EventEmitter<void>();
   constructor(private route: ActivatedRoute) { }
   ngOnInit(): void {
     this.onHide.emit(false);
@@ -62,23 +63,27 @@ export class SpecialistsListComponent implements OnInit, OnDestroy {
       return specialist.id !== addingSpecialist.id;
     });
     this.updateResultObject();
+    this.onShopsReset.emit();
   }
+
   openNewSpecialistsList() {
     this.hiddenList = false;
     this.onHide.emit(false);
   }
 
   deleteSpecialist(deletingSpecialist: Specialist) {
-    this.onCurrentSpecialistDelete.emit(deletingSpecialist);
     this.addedSpecialists = this.addedSpecialists.filter((specialist, index) => {
       if (specialist.id === deletingSpecialist.id) {
         specialist.shops.length = 0;
         if (index > 0) {
           this.currentSpecialist = this.addedSpecialists[index - 1];
+          this.onCurrentSpecialistDelete.emit(this.currentSpecialist);
         } else if (index === 0 && this.addedSpecialists.length > 1) {
           this.currentSpecialist = this.addedSpecialists[index + 1];
+          this.onCurrentSpecialistDelete.emit(this.currentSpecialist);
         } else {
           this.currentSpecialist = null;
+          this.onCurrentSpecialistDelete.emit();
         }
       }
       this.onCurrentSpecialistChanged.emit(this.currentSpecialist);

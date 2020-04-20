@@ -26,3 +26,21 @@
     border-radius: 50%;
   }
 }
+
+.shops-counter {
+  position: absolute;
+  top: 5px;
+  left: 30px;
+  color: white;
+  background-color: #007AFF;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+.shops-counter__counter {
+  font-size: 12px;
+  text-align: center;
+  margin-top: -3px;
+}
+

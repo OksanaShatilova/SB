@@ -1,16 +1,19 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Shop} from './services/shops.service';
 import {Specialist} from './services/specialists.service';
 import {Result, WorkerShopRequestItem} from './edit-page.module';
 import {WorkerShopService} from './services/worker-shop.service';
 import {Subscription} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-edit-page',
   templateUrl: './edit-page.component.html',
   styleUrls: ['./edit-page.component.scss']
 })
-export class EditPageComponent implements OnDestroy {
+export class EditPageComponent implements OnInit, OnDestroy {
+  allShops: Shop[];
+  routeSubscription: Subscription;
   workerShopSubscription: Subscription
   disabledList: boolean;
   disabledButton: boolean;
@@ -18,7 +21,17 @@ export class EditPageComponent implements OnDestroy {
   result: Specialist[];
   availableShops: Shop[];
   workerShopRequest: WorkerShopRequestItem[];
-  constructor(private workerShopService: WorkerShopService) { }
+  constructor(
+    private workerShopService: WorkerShopService,
+    private route: ActivatedRoute,
+  ) { }
+  ngOnInit(): void {
+    this.routeSubscription = this.route.data.subscribe((data) => {
+      this.allShops = data.shops;
+      this.availableShops = data.shops;
+    });
+  }
+
   disableShopsList(hiddenList: boolean) {
     this.disabledList = !hiddenList;
   }
@@ -29,6 +42,7 @@ export class EditPageComponent implements OnDestroy {
 
   updateCurrentSpecialist(specialist: Specialist) {
     this.currentSpecialist = specialist;
+    this.availableShops = this.updateShopsList(specialist);
   }
 
   removeCurrentSpecialistShop(deletingShop: Shop) {
@@ -43,18 +57,27 @@ export class EditPageComponent implements OnDestroy {
   }
 
   updateShopsList(specialist: Specialist) {
-    this.availableShops.unshift(...specialist.shops);
+    if (specialist) {
+      return this.availableShops = this.allShops.filter(shop => {
+        const condition = specialist.shops.some(addedShop => {
+          return addedShop.id === shop.id;
+        });
+        return !condition;
+      });
+    } else {
+      this.availableShops = this.allShops;
+    }
   }
 
   prepareWorkerShopRequest() {
-    this.workerShopRequest = this.result.map(item => {
-      const shops = item.shops.map(shop => {
-        return shop.id;
+    this.workerShopRequest = [];
+    this.result.forEach(item => {
+      item.shops.forEach(shop => {
+        this.workerShopRequest.push({
+          specialistId: item.id,
+          shopId: shop.id
+        });
       });
-      return {
-        specialistId: item.id,
-        shopsId: shops
-      };
     });
   }
 
@@ -77,5 +100,9 @@ export class EditPageComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.workerShopSubscription.unsubscribe();
+  }
+
+  resetShopListToDefault() {
+    this.availableShops = this.allShops;
   }
 }

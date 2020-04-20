@@ -1,5 +1,5 @@
 <div class="shops-list" [ngClass]="{disabled: disabledList}">
-  <div *ngIf="availableShops && currentSpecialist">
+  <div>
     <div class="shops-counter">
       <p class="title--small">Нераспределенные магазины:
         <span class="shops-counter__number">{{availableShops.length}}</span>
@@ -20,6 +20,5 @@
       </div>
     </div>
   </div>
-
   <div class="cover"></div>
 </div>

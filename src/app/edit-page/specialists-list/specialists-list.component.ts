@@ -82,7 +82,6 @@ export class SpecialistsListComponent implements OnInit, OnDestroy {
           this.currentSpecialist = this.addedSpecialists[index + 1];
           this.onCurrentSpecialistDelete.emit(this.currentSpecialist);
         } else {
-          this.currentSpecialist = null;
           this.onCurrentSpecialistDelete.emit();
         }
       }

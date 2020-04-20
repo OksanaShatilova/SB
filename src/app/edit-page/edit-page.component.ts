@@ -65,7 +65,8 @@ export class EditPageComponent implements OnInit, OnDestroy {
         return !condition;
       });
     } else {
-      this.availableShops = this.allShops;
+      this.resetShopListToDefault();
+      this.disabledList = true;
     }
   }
 

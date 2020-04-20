@@ -3,7 +3,17 @@
     <p>Сохранить изменения</p>
   </button>
   <div class="edit-page__container">
-    <app-specialists-list></app-specialists-list>
-    <app-shops-list></app-shops-list>
+    <app-specialists-list
+      (onHide)="disableShopsList($event)"
+      (onCurrentSpecialistChanged)="updateCurrentSpecialist($event)"
+      (onCurrentSpecialistShopDelete)="removeCurrentSpecialistShop($event)"
+    >
+    </app-specialists-list>
+    <app-shops-list
+      [disabledList]="disabledList"
+      (onShopAdd)="addCurrentSpecialistShop($event)"
+      (onAvailableShopsChanged)="updateAvailableShopsList($event)"
+    >
+    </app-shops-list>
   </div>
 </div>

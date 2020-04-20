@@ -13,11 +13,17 @@
 
 .specialist__shops-counter {
   margin-left: 16px;
-  color: #007AFF
+  color: steelblue;
 }
 
 .icon--delete {
   position: absolute;
-  right: 0;
-  top: 12px;
+  right: 20px;
+  top: 8px;
+}
+
+.icon--delete:hover {
+  #delete {
+    fill: steelblue;
+  }
 }

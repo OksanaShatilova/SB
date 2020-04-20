@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
+import {Shop} from './shops.service';
 
 export interface Specialist {
   id: number;
   fullName: string;
   photo: string;
-  shops?: [];
+  shops?: Shop[];
 }
 
 @Injectable({providedIn: 'root'})

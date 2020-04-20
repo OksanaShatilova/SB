@@ -5,7 +5,7 @@
 .specialists-card {
   background-color: white;
   width: 500px;
-  min-height: 440px;
+  height: 440px;
   margin-right: 40px;
   border-radius: 0px 6px 6px 6px;
 }
@@ -56,7 +56,7 @@
 
 .btn__add:hover {
   &:before {
-    background-color: lightblue;
+    background-color: steelblue;
   }
 }
 
@@ -119,4 +119,27 @@
 
 .title__shops {
   margin-bottom: 15px;
+}
+
+.shop__container {
+  position: relative;
+  &:hover {
+    background-color: ghostwhite;
+  }
+}
+
+.icon--delete-shop {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.icon--delete-shop:hover  #svg_1 {
+  fill: steelblue;
+  fill-opacity: 1;
+}
+
+.shops-list {
+  height: 250px;
+  overflow-y: auto;
 }

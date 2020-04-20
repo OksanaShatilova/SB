@@ -1,4 +1,5 @@
 <div class="new-specialists-list">
   <p class="icon--close" (click)="closePopup()">X</p>
   <p class="specialist" (click)="selectSpecialist(specialist)" *ngFor="let specialist of specialists">{{specialist.fullName}}</p>
+  <p  class="message" *ngIf="!specialists.length">Список пуст</p>
 </div>

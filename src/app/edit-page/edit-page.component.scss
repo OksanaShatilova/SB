@@ -23,6 +23,15 @@
   box-sizing: border-box;
   border-radius: 4px;
 
+  &:hover {
+    background-color: lightblue;
+  }
+
+  &:disabled {
+    background-color: lightgray;
+    cursor: not-allowed;
+  }
+
   &:before {
     content: '';
     width: 13px;

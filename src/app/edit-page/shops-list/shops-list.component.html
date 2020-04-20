@@ -3,7 +3,7 @@
     <p class="title--small">Нераспределенные магазины:
       <span class="shops-counter__number">{{availableShops.length}}</span>
     </p>
-    <img class="icon--warning" src="../../../assets/img/warning.svg">
+    <img *ngIf="availableShops.length" class="icon--warning" src="../../../assets/img/warning.svg">
   </div>
   <div class="shops-container">
     <div class="shop__container" *ngFor="let shop of availableShops">

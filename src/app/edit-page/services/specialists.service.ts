@@ -19,7 +19,7 @@ export class SpecialistService {
     {id: 5, fullName: 'Ананьев Дмитрий Евстафиевич', photo: '../../../../assets/img/photo_5.png'},
     {id: 6, fullName: 'Соколова Полина Ильевна', photo: '../../../../assets/img/photo_6.png'},
     {id: 7, fullName: 'Малыхин Клавдий Святославович', photo: '../../../../assets/img/photo_7.png'}
-  ]
+  ];
   constructor() {}
 
   getSpecialists(): Observable<Specialist[]> {

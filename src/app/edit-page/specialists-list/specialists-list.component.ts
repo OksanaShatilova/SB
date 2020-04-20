@@ -1,25 +1,32 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Specialist} from '../services/specialists.service';
 import {Shop} from '../services/shops.service';
+import {Result} from '../edit-page.module';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-specialists-list',
   templateUrl: './specialists-list.component.html',
   styleUrls: ['./specialists-list.component.scss']
 })
-export class SpecialistsListComponent implements OnInit {
+
+export class SpecialistsListComponent implements OnInit, OnDestroy {
   availableSpecialists: Specialist[];
   addedSpecialists: Specialist[] = [];
-  currentSpecialist: Specialist | null;
+  currentSpecialist: Specialist;
   hiddenList = true;
+  routeSubscription: Subscription
+
   @Output() onHide: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onCurrentSpecialistChanged: EventEmitter<Specialist> = new EventEmitter<Specialist>();
   @Output() onCurrentSpecialistShopDelete: EventEmitter<Shop> = new EventEmitter<Shop>();
+  @Output() onCurrentSpecialistDelete: EventEmitter<Specialist> = new EventEmitter<Specialist>();
+  @Output() onAllSpecialistListUpdate: EventEmitter<Result> = new EventEmitter<Result>()
   constructor(private route: ActivatedRoute) { }
   ngOnInit(): void {
     this.onHide.emit(false);
-    this.route.data.subscribe((data) => {
+    this.routeSubscription = this.route.data.subscribe((data) => {
       this.availableSpecialists = data.specialists.map(specialist => {
         return {
           id: specialist.id,
@@ -28,6 +35,13 @@ export class SpecialistsListComponent implements OnInit {
           shops: []
         };
       });
+    });
+    this.updateResultObject();
+  }
+  updateResultObject() {
+    this.onAllSpecialistListUpdate.emit({
+      availableSpecialists: this.availableSpecialists,
+      addedSpecialists: this.addedSpecialists
     });
   }
 
@@ -47,6 +61,7 @@ export class SpecialistsListComponent implements OnInit {
     this.availableSpecialists = this.availableSpecialists.filter((specialist) => {
       return specialist.id !== addingSpecialist.id;
     });
+    this.updateResultObject();
   }
   openNewSpecialistsList() {
     this.hiddenList = false;
@@ -54,20 +69,39 @@ export class SpecialistsListComponent implements OnInit {
   }
 
   deleteSpecialist(deletingSpecialist: Specialist) {
+    this.onCurrentSpecialistDelete.emit(deletingSpecialist);
     this.addedSpecialists = this.addedSpecialists.filter((specialist, index) => {
       if (specialist.id === deletingSpecialist.id) {
-        this.currentSpecialist = this.addedSpecialists[index - 1] || null;
-        this.onCurrentSpecialistChanged.emit(this.currentSpecialist);
+        specialist.shops.length = 0;
+        if (index > 0) {
+          this.currentSpecialist = this.addedSpecialists[index - 1];
+        } else if (index === 0 && this.addedSpecialists.length > 1) {
+          this.currentSpecialist = this.addedSpecialists[index + 1];
+        } else {
+          this.currentSpecialist = null;
+        }
       }
+      this.onCurrentSpecialistChanged.emit(this.currentSpecialist);
       if (!this.currentSpecialist) {
         this.onHide.emit(false);
       }
       return specialist.id !== deletingSpecialist.id;
     });
-    this.availableSpecialists.push(deletingSpecialist);
+    this.availableSpecialists.unshift(deletingSpecialist);
+    this.updateResultObject();
   }
 
   deleteShop(shop: Shop) {
     this.onCurrentSpecialistShopDelete.emit(shop);
+    this.updateResultObject();
+  }
+
+  selectSpecialist(specialist: Specialist) {
+    this.currentSpecialist = specialist;
+    this.onCurrentSpecialistChanged.emit(this.currentSpecialist);
+  }
+
+  ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
   }
 }

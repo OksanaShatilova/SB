@@ -6,7 +6,7 @@ import {Specialist} from '../../services/specialists.service';
   templateUrl: './specialist-info.component.html',
   styleUrls: ['./specialist-info.component.scss']
 })
-export class SpecialistInfoComponent{
+export class SpecialistInfoComponent {
   @Input() currentSpecialist: Specialist;
   @Output() onDelete: EventEmitter<Specialist> = new EventEmitter<Specialist>();
   constructor() { }

@@ -1,7 +1,12 @@
 <div class="specialist-list">
   <div class="action-panel">
-    <app-specialist-tab *ngFor="let specialist of addedSpecialists" [specialist]="specialist" [currentSpecialist]="currentSpecialist"></app-specialist-tab>
-    <button class="btn btn__add" (click)="openNewSpecialistsList()">
+    <app-specialist-tab
+      *ngFor="let specialist of addedSpecialists"
+      [specialist]="specialist"
+      [currentSpecialist]="currentSpecialist"
+      (click)="selectSpecialist(specialist)"
+    ></app-specialist-tab>
+    <button class="btn btn__add" (click)="openNewSpecialistsList()" type="button">
       <p *ngIf="addedSpecialists.length < 5">Добавить специалиста</p>
     </button>
   </div>
@@ -18,7 +23,7 @@
       </div>
       <div class="specialists-card__shops">
         <p class="title__shops title--small">Магазины</p>
-        <p class="no-shops-message" *ngIf="!currentSpecialist">Не назначены</p>
+        <p class="no-shops-message" *ngIf="!currentSpecialist.shops.length">Не назначены</p>
         <div *ngIf="currentSpecialist" class="shops-list">
           <div *ngFor="let shop of currentSpecialist.shops" class="shop__container">
             <app-shop-item  [shop]="shop"></app-shop-item>

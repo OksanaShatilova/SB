@@ -6,6 +6,19 @@ import {SpecialistsListModule} from './specialists-list/specialists-list.module'
 import {ShopsListModule} from './shops-list/shops-list.module';
 import {SpecialistsResolver} from './services/specialists.resolver';
 import {ShopsResolver} from './services/shops.resolver';
+import {Specialist} from './services/specialists.service';
+import {BrowserModule} from '@angular/platform-browser';
+
+
+export interface Result {
+  availableSpecialists: Specialist[];
+  addedSpecialists: Specialist[];
+}
+
+export interface WorkerShopRequestItem {
+  specialistId: number;
+  shopsId: number[];
+}
 
 @NgModule({
   declarations: [

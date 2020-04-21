@@ -1,5 +1,5 @@
 <div class="edit-page">
-  <button [disabled]="disabledButton" class="btn btn__save" type="submit" (click)="createWorkerShopRequest()">
+  <button [disabled]="disabledButton || !currentSpecialist" class="btn btn__save" type="submit" (click)="createWorkerShopRequest()">
     <p>Сохранить изменения</p>
   </button>
   <div class="edit-page__container">
